@@ -25,12 +25,11 @@
           <a class="nav-link active" href="{{ url('/') }}">Home</a>
           <a class="nav-link" href="{{ url('/about') }}">About</a>
           <a class="nav-link" href="#">Pricing</a>
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
         </div>
       </div>
     </div>
   </nav>
-  
+
 
   @yield('container')
 
