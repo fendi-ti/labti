@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Models\User;
 
 class PagesController extends Controller
@@ -13,14 +14,12 @@ class PagesController extends Controller
      * @param  int  $id
      * @return \Illuminate\View\View
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function home()
     {
-        $nama = 'Fendi';
-        return view('index', ['nama' => $nama]);
-    }
-    public function about()
-    {
-        $nama = 'Fendi';
-        return view('about', ['nama' => $nama]);
+        return view('index');
     }
 }

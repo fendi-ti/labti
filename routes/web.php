@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\PagesController;
+use App\Http\Controllers\HostingController;
+use App\Http\Controllers\StokController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,5 +23,15 @@ use Illuminate\Support\Facades\Route;
 //	$nama = 'Fendi';
 //    return view('about', ['nama' => $nama]);
 //});
-Route::get('/', 'App\Http\Controllers\PagesController@home');
-Route::get('/about', 'App\Http\Controllers\PagesController@about');
+Route::get('/', [PagesController::class, 'home']);
+Route::get('/hosting', [HostingController::class, 'index']);
+Route::get('/stok', [StokController::class, 'home']);
+Route::get('/stokview', [StokController::class, 'index']);
+Route::get('/history/{id_barang}', [StokController::class, 'show']);
+Route::get('/outview', [StokController::class, 'outstok']);
+Route::get('/formaddbarang', [StokController::class, 'ambilNamabarang']);
+Route::post('/addbarang', [StokController::class, 'store']);
+Route::get('/testpage', [StokController::class, 'testpage']);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
