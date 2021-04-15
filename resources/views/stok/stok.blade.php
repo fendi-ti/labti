@@ -34,7 +34,7 @@
                                         @foreach($habis_pakai as $s)
                                         <tr>
                                             <td class="text-center">{{ $loop->iteration }}</td>
-                                            <td>{{ $s->jenis_barang }}</td>
+                                            <td>{{ $s->name }}</td>
                                             <td>{{ $s->spesifikasi }}</td>
                                             <td class="text-center">{{ $s->stok }}</td>
                                             <td>{{ $s->satuan }}</td>
@@ -67,18 +67,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-12">
-                <nav class="mt-2">
-                    <ul class="pagination pagination-sm justify-content-end">
-                        {{$habis_pakai->links()}}
-                    </ul>
-                </nav>
+            <div class="pagination-block">
+                {{ $habis_pakai->links() }}
             </div>
-            <!--<style>
-                .w-5 {
-                    display: none;
-                }
-            </style>-->
         </div>
     </section>
 </div>

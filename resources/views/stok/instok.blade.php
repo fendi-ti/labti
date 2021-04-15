@@ -13,11 +13,11 @@
                 <div class="col-md-1 mt-2">
                 </div>
                 <div class="col-md-10 mt-2">
-                    <a class="btn btn-success" href="{{url('/formaddout')}}" role="button"> + Tambah Barang Keluar</a>
+                    <a class="btn btn-success" href="{{url('/formaddin')}}" role="button"> + Tambah Barang Masuk</a>
                     <!-- TABLE: LATEST ORDERS -->
                     <div class="card mt-0 mb-1 mt-2 card-info disable">
                         <div class="card-header border-transparent">
-                            <h3 class="card-title text-center">History Barang Keluar</h3>
+                            <h3 class="card-title text-center">History Barang Masuk</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body p-0">
@@ -27,21 +27,21 @@
                                         <tr>
                                             <th scope="col" width="4%">No.</th>
                                             <th scope="col">Nama Barang</th>
-                                            <th scope="col">Tanggal Keluar</th>
+                                            <th scope="col">Tanggal Masuk</th>
                                             <th scope="col" class="text-center">Jumlah</th>
                                             <th scope="col">Penerima</th>
                                             <th scope="col">Keterangan</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($outstok as $o)
+                                        @foreach($instok as $i)
                                         <tr>
                                             <td class="text-center">{{ $loop->iteration }}</td>
-                                            <td>{{ $o->name }}</td>
-                                            <td>{{ $o->tgl_keluar }}</td>
-                                            <td class="text-center">{{ $o->jumlah_keluar }}</td>
-                                            <td>{{ $o->penerima }}</td>
-                                            <td>{{ $o->keterangan }}</td>
+                                            <td>{{ $i->name }}</td>
+                                            <td>{{ $i->tgl_masuk }}</td>
+                                            <td class="text-center">{{ $i->jumlah_masuk }}</td>
+                                            <td>{{ $i->penerima }}</td>
+                                            <td>{{ $i->keterangan }}</td>
                                         </tr>
                                         @endforeach
                                     </tbody>

@@ -45,7 +45,7 @@
                         <div class="icon">
                             <i class="fas fa-sign-in-alt"></i>
                         </div>
-                        <a href="inview.php" class="small-box-footer">Lanjut <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="{{url('inview')}}" class="small-box-footer">Lanjut <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->

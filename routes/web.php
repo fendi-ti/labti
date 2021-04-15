@@ -29,8 +29,11 @@ Route::get('/stok', [StokController::class, 'home']);
 Route::get('/stokview', [StokController::class, 'index']);
 Route::get('/history/{id_barang}', [StokController::class, 'show']);
 Route::get('/outview', [StokController::class, 'outstok']);
-Route::get('/formaddbarang', [StokController::class, 'ambilNamabarang']);
-Route::post('/addbarang', [StokController::class, 'store']);
+Route::get('/inview', [StokController::class, 'instok']);
+Route::get('/formaddout', [StokController::class, 'createout'])->name('createout');
+Route::get('/formaddin', [StokController::class, 'createin'])->name('createin');
+Route::post('/addOut', [StokController::class, 'storeout'])->name('addOut');
+Route::post('/addIn', [StokController::class, 'storein'])->name('addIn');
 Route::get('/testpage', [StokController::class, 'testpage']);
 Auth::routes();
 

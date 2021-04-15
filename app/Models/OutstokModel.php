@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
 
-class StokModel extends Model
+class OutstokModel extends Model
 {
-    protected $table = 'habis_pakai';
-    protected $primaryKey = 'id_barang';
+    protected $table = 'outstok';
+    protected $primaryKey = 'idkeluar';
     // public function allData()
     // {
     //     return DB::table('habis_pakai')->get();
