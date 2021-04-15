@@ -35,6 +35,8 @@ Route::get('/formaddin', [StokController::class, 'createin'])->name('createin');
 Route::post('/addOut', [StokController::class, 'storeout'])->name('addOut');
 Route::post('/addIn', [StokController::class, 'storein'])->name('addIn');
 Route::get('/testpage', [StokController::class, 'testpage']);
+Route::get('/formadd', [StokController::class, 'formadd'])->name('formadd');
+Route::post('/addbarang', [StokController::class, 'addbarang'])->name('addbarang');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

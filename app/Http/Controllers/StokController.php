@@ -36,7 +36,22 @@ class StokController extends Controller
         $stok = Stock::Paginate(10);
         return view('stok.stok', ['habis_pakai' => $stok]);
     }
-
+    public function formadd()
+    {
+        return view('stok.formadd');
+    }
+    public function addbarang(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'spesifikasi' => 'required',
+            'satuan' => 'required',
+            'tanggal_masuk' => 'required'
+        ]);
+        //return $request;
+          Stock::create($request->all());
+          return redirect()->route('formadd')->with('status','Barang Berhasil Ditambahkan');
+    }
     /**
      * Show the form for creating a new resource.
      *
