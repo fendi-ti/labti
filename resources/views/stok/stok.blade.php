@@ -1,6 +1,6 @@
-@extends('layout/main')
+@extends('layouts.main')
 
-@section('title', 'Stok')
+@section('title', 'Admin | Stok')
 
 @section('container')
 <div class="content-wrapper">
@@ -31,7 +31,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($habis_pakai as $s)
+                                        @foreach($stok as $s)
                                         <tr>
                                             <td class="text-center">{{ $loop->iteration }}</td>
                                             <td>{{ $s->name }}</td>
@@ -45,7 +45,7 @@
                                                 </a>
                                             </td>
                                             <td class="text-center">
-                                                <a href="{{ url('/history',[$s->id_barang],[$s->jenis_barang]) }}">
+                                                <a href="{{ url('/history',[$s->id_barang]) }}">
                                                     <span style="color: #28a745"><i class="fas fa-history" data-toggle="tooltip" title="History"></i></span>
                                                 </a>
                                             </td>
@@ -68,7 +68,7 @@
                 </div>
             </div>
             <div class="pagination-block">
-                {{ $habis_pakai->links() }}
+                {{ $stok->links() }}
             </div>
         </div>
     </section>

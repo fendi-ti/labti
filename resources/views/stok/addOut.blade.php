@@ -1,6 +1,6 @@
-@extends('layout/main')
+@extends('layouts.main')
 
-@section('title', 'Stok')
+@section('title', 'Admin | Stok')
 
 @section('container')
 <div class="content-wrapper">

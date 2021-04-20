@@ -34,7 +34,7 @@ class StokController extends Controller
          *];
          */
         $stok = Stock::Paginate(10);
-        return view('stok.stok', ['habis_pakai' => $stok]);
+        return view('stok.stok', ['stok' => $stok]);
     }
     public function formadd()
     {
@@ -111,7 +111,7 @@ class StokController extends Controller
         }
         Stock::where('id_barang', $request->barang)
              ->update(['stok'=> $stokakhir]);
-         return redirect()->route('createout')->with('status','Barang Berhasil Ditambahkan');
+         return redirect()->route('createin')->with('status','Barang Berhasil Ditambahkan');
     }
     public function storeout(Request $request)
     {
@@ -133,9 +133,10 @@ class StokController extends Controller
             $kurang = $request->jumlah;
             $stokakhir = $stokawal - $kurang;
         }
-         Stock::where('id_barang', $request->barang)
-             ->update(['stok'=> $stokakhir]);
-         return redirect()->route('createout')->with('status','Barang Berhasil Dikeluarkan');
+        //return $stokakhir;
+        Stock::where('id_barang', $request->barang)
+          ->update(['stok'=> $stokakhir]);
+        return redirect()->route('createout')->with('status','Barang Berhasil Dikeluarkan');
     }
 
     /**
@@ -144,12 +145,11 @@ class StokController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id_barang)
     {
-        $history = [
-            'history' => $this->StokModel->historyData($id),
-        ];
-        return view('stok.history', $history);
+        $namabarang = Stock::select('name','id_barang')->where('id_barang',$id_barang)->get();
+        $history = Outstock::where('id_barang',$id_barang)->get();
+        return view('stok.history', compact('history'), compact('namabarang'));
     }
 
     /**
@@ -184,6 +184,19 @@ class StokController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function print($id_barang)
+    {
+        $outstok = Outstock::join('stocks','stocks.id_barang', '=', 'outstocks.id_barang')
+                                ->get();
+            return view('stok.print', ['outstok' => $outstok]);
+        // return view('stok.print');
+    }
+    public function printer($id_barang)
+    {
+        $outstok = Outstock::join('stocks','stocks.id_barang', '=', 'outstocks.id_barang')
+                                ->get();
+            return view('stok.printpdf', ['outstok' => $outstok]);
     }
     public function testpage()
     {
