@@ -67,7 +67,7 @@
                                         <div class="input-group-prepend">
                                           <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                         </div>
-                                        <input type="text" id="tgl" name="tanggal_masuk" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask placeholder="dd/mm/yyyy">
+                                        <input type="text" id="tgl" name="tanggal_masuk" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy-mm-dd" data-mask placeholder="yyyy-mm-dd">
                                       </div>
                                 </div>
                                 <!-- /.card-body -->

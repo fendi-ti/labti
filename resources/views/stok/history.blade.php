@@ -21,22 +21,46 @@
                                     <thead>
                                         <tr>
                                             <th scope="col" width="4%">No.</th>
-                                            <th scope="col">Tanggal Keluar</th>
+                                            <th scope="col">Tanggal</th>
                                             <th scope="col" class="text-center">Penerima</th>
                                             <th scope="col" class="text-center">Jumlah</th>
                                             <th scope="col">Keterangan</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($history as $h)
+                                        <?php $in = $data['in']; $out = $data['out']; $dari =$data['dari'];  ?>
+                                        @while (strtotime($dari) <= strtotime($data['sampai']))
+                                            
+                                        
+                                        @foreach( $in as $h)
+                                        @if ($h->tgl_masuk==$dari)
                                         <tr>
                                             <td class="text-center">{{ $loop->iteration }}</td>
-                                            <td>{{ $h->tgl_keluar }}</td>
+                                            <td>{{ $h->tgl_masuk }}</td>
                                             <td class="text-center">{{ $h->penerima }}</td>
-                                            <td class="text-center">{{ $h->jumlah }}</td>
+                                            <td class="text-center">{{ $h->jumlah_masuk }}</td>
                                             <td>{{ $h->keterangan }}</td>
-                                        </tr>
+                                        </tr>  
+                                        @endif                                         
                                         @endforeach
+
+                                        @foreach( $out as $o)
+                                        @if ($o->tgl_keluar==$dari)
+                                        <tr>
+                                            <td class="text-center">{{ $loop->iteration }}</td>
+                                            <td>{{ $o->tgl_keluar }}</td>
+                                            <td class="text-center">{{ $o->penerima }}</td>
+                                            <td class="text-center">{{ $o->jumlah_keluar }}</td>
+                                            <td>{{ $o->keterangan }}</td>
+                                        </tr>
+                                       
+                                        @endif
+                                        
+
+                                        @endforeach
+                                        <?php $dari = date ("Y-m-d", strtotime("+1 day", strtotime($dari)));?>
+
+                                        @endwhile
                                     </tbody>
 
                                 </table>

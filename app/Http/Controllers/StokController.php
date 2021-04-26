@@ -111,7 +111,7 @@ class StokController extends Controller
         }
         Stock::where('id_barang', $request->barang)
              ->update(['stok'=> $stokakhir]);
-         return redirect()->route('createout')->with('status','Barang Berhasil Ditambahkan');
+         return redirect()->route('createin')->with('status','Barang Berhasil Ditambahkan');
     }
     public function storeout(Request $request)
     {
@@ -144,12 +144,17 @@ class StokController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id_barang,$dari,$sampai)
     {
-        $history = [
-            'history' => $this->StokModel->historyData($id),
-        ];
-        return view('stok.history', $history);
+        // $history = [
+        //     'history' => $this->StokModel->historyData($id),
+        // ];
+        $instock = Instock::where('id_barang',$id_barang)->orderBy('tgl_masuk','asc')->get();
+        $outstock = Outstock::where('id_barang',$id_barang)->orderBy('tgl_keluar','asc')->get();
+        
+        $data = array('in'=>$instock,'out'=>$outstock, 'dari'=>$dari, 'sampai'=>$sampai);
+        return view('stok.history', compact('data'));
+        // return $data;
     }
 
     /**
@@ -160,7 +165,7 @@ class StokController extends Controller
      */
     public function edit($id_barang)
     {
-        //
+        return $id_barang;
     }
 
     /**

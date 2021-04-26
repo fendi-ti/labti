@@ -16,7 +16,7 @@ class CreateOutstockModel extends Migration
         Schema::create('outstocks', function (Blueprint $table) {
             $table->increments('id_keluar');
             $table->integer('id_barang');
-            $table->date('tgl_keluar');
+            $table->date('tgl_keluar')->useCurrent();
             $table->string('penerima','20');
             $table->integer('jumlah_keluar');
             $table->string('keterangan','100');

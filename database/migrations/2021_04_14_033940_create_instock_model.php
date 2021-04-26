@@ -16,7 +16,7 @@ class CreateInstockModel extends Migration
         Schema::create('instocks', function (Blueprint $table) {
             $table->increments('id_masuk');
             $table->integer('id_barang');
-            $table->date('tgl_masuk');
+            $table->date('tgl_masuk')->useCurrent();
             $table->string('penerima','20');
             $table->integer('jumlah_masuk');
             $table->string('keterangan','100');

@@ -27,7 +27,7 @@ Route::get('/', [PagesController::class, 'home']);
 Route::get('/hosting', [HostingController::class, 'index']);
 Route::get('/stok', [StokController::class, 'home']);
 Route::get('/stokview', [StokController::class, 'index']);
-Route::get('/history/{id_barang}', [StokController::class, 'show']);
+Route::get('/history/{id_barang}/{dari}/{sampai}', [StokController::class, 'show']);
 Route::get('/outview', [StokController::class, 'outstok']);
 Route::get('/inview', [StokController::class, 'instok']);
 Route::get('/formaddout', [StokController::class, 'createout'])->name('createout');
