@@ -30,14 +30,15 @@ Route::get('/stokview', [StokController::class, 'index']);
 Route::get('/history/{id_barang}', [StokController::class, 'show']);
 Route::get('/outview', [StokController::class, 'outstok']);
 Route::get('/inview', [StokController::class, 'instok']);
-Route::get('/formaddout', [StokController::class, 'createout'])->name('createout');
+Route::get('/formtransaksi', [StokController::class, 'createtrans'])->name('createtrans');
 Route::get('/formaddin', [StokController::class, 'createin'])->name('createin');
-Route::post('/addOut', [StokController::class, 'storeout'])->name('addOut');
+Route::post('/addTrans', [StokController::class, 'storetrans'])->name('addTrans');
 Route::post('/addIn', [StokController::class, 'storein'])->name('addIn');
 Route::get('/testpage', [StokController::class, 'testpage']);
 Route::get('/formadd', [StokController::class, 'formadd'])->name('formadd');
 Route::post('/addbarang', [StokController::class, 'addbarang'])->name('addbarang');
-Route::get('/print/{id_barang}', [StokController::class, 'print']);
+Route::get('/print', [StokController::class, 'print']);
+Route::get('/printpdf', [StokController::class, 'printpdf']);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

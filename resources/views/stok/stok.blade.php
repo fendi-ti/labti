@@ -45,7 +45,7 @@
                                                 </a>
                                             </td>
                                             <td class="text-center">
-                                                <a href="{{ url('/history',[$s->id_barang]) }}">
+                                                <a href="{{ url('/history',[$s->id]) }}">
                                                     <span style="color: #28a745"><i class="fas fa-history" data-toggle="tooltip" title="History"></i></span>
                                                 </a>
                                             </td>

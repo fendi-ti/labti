@@ -13,11 +13,12 @@
                 <div class="col-md-1 mt-2">
                 </div>
                 <div class="col-md-10 mt-2">
-                    <a class="btn btn-success" href="{{url('/formaddout')}}" role="button"> + Tambah Barang Keluar</a>
+                    <a class="btn btn-success" href="{{url('/formtransaksi')}}" role="button"> + Tambah Transaksi</a>
+                    <a class="btn btn-primary" href="{{ url('/print') }}" role="button">Cetak</a>
                     <!-- TABLE: LATEST ORDERS -->
                     <div class="card mt-0 mb-1 mt-2 card-info disable">
                         <div class="card-header border-transparent">
-                            <h3 class="card-title text-center">History Barang Keluar</h3>
+                            <h3 class="card-title text-center">History Transaksi</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body p-0">
@@ -27,7 +28,8 @@
                                         <tr>
                                             <th scope="col" width="4%">No.</th>
                                             <th scope="col">Nama Barang</th>
-                                            <th scope="col">Tanggal Keluar</th>
+                                            <th scope="col">Tanggal Transaksi</th>
+                                            <th scope="col">Jenis Transaksi</th>
                                             <th scope="col" class="text-center">Jumlah</th>
                                             <th scope="col">Penerima</th>
                                             <th scope="col">Keterangan</th>
@@ -38,8 +40,9 @@
                                         <tr>
                                             <td class="text-center">{{ $loop->iteration }}</td>
                                             <td>{{ $o->name }}</td>
-                                            <td>{{ $o->tgl_keluar }}</td>
-                                            <td class="text-center">{{ $o->jumlah_keluar }}</td>
+                                            <td>{{ $o->tgl_trans }}</td>
+                                            <td>{{ $o->nama_trans }}</td>
+                                            <td class="text-center">{{ $o->jumlah_trans }}</td>
                                             <td>{{ $o->penerima }}</td>
                                             <td>{{ $o->keterangan }}</td>
                                         </tr>

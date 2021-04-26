@@ -38,9 +38,17 @@
                         <!-- /.card-header -->
                         <!-- form start -->
                         <div class="bootstrap-timepicker">
-                            <form method="post" action="{{ route('addOut') }}">
+                            <form method="post" action="{{ route('addTrans') }}">
                                 @csrf
                                 <div class="card-body">
+                                    <label for="jenis">Jenis Transaksi</label>
+                                    <select name="jenis" class="form-control">
+                                        @foreach ($jenis as $j)
+                                        {{$namatrans = $j->nama_trans}}
+                                        {{$idjenis= $j->id_jenis}}
+                                        <option value="{{$idjenis}}">{{$namatrans}}</option>
+                                        @endforeach
+                                    </select>
                                     <label for="jenis">Jenis Barang</label>
                                     <select name="barang" class="form-control">
                                         @foreach ($nama as $n)

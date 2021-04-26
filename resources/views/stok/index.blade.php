@@ -22,7 +22,7 @@
         <div class="container-fluid">
             <!-- Small boxes (Stat box) -->
             <div class="row">
-                <div class="col-lg-3 col-6">
+                <div class="col-lg-4 col-6">
                     <!-- small box -->
                     <div class="small-box bg-primary">
                         <div class="inner">
@@ -35,26 +35,13 @@
                         <a href="{{url('formadd')}}" class="small-box-footer">Lanjut <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-6">
+                <!-- ./col -->
+                <div class="col-lg-4 col-6">
                     <!-- small box -->
                     <div class="small-box bg-success">
                         <div class="inner">
-                            <h3>30</h3>
-                            <p>Barang Masuk</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-sign-in-alt"></i>
-                        </div>
-                        <a href="{{url('inview')}}" class="small-box-footer">Lanjut <i class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <!-- ./col -->
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-warning">
-                        <div class="inner">
                             <h3>10</h3>
-                            <p>Barang Keluar</p>
+                            <p>Transaksi</p>
                         </div>
                         <div class="icon">
                             <i class="fas fa-sign-out-alt"></i>
@@ -63,7 +50,7 @@
                     </div>
                 </div>
                 <!-- ./col -->
-                <div class="col-lg-3 col-6">
+                <div class="col-lg-4 col-6">
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">

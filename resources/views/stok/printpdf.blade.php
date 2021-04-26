@@ -45,29 +45,87 @@
             </div>
             <!-- /.col -->
           </div>
+          <div class="row">
+            <div class="col-2 mt-2">
+              <h6>UAPB<br></h6>
+              <h6>UAPB-E1<br></h6>
+              <h6>UAPPB-W<br></h6>
+            </div>
+            <div class="col-5 mt-2">
+              <h6>: KEMDIKBUD<br></h6>
+              <h6>: DIREKTORAL JENDERAL PENDIDIKAN VOKASI<br></h6>
+              <h6>: Jawa Timur<br></h6>
+            </div>
+            <div class="col-2 mt-2">
+              <h6>No. Kartu<br></h6>
+              <h6>Halaman<br></h6>
+            </div>
+            <div class="col-3 mt-2">
+              <h6>:<br></h6>
+              <h6>:<br></h6>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 mt-1 text-center">
+              <p><strong>BUKU BARANG PERSEDIAAN</strong></p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-2 mt-2">
+              <h6>Kode UAKPB<br></h6>
+              <h6>Nama Unit UAPKPB<br></h6>
+            </div>
+            <div class="col-5 mt-2">
+              <h6>: 023.18.0500.677592.001.KD<br></h6>
+              <h6>: Teknik Informatika<br></h6>
+            </div>
+            <div class="col-2 mt-2">
+              <h6>Nama Barang<br></h6>
+              <h6>Satuan<br></h6>
+            </div>
+            <div class="col-3 mt-2">
+              <h6>:<br></h6>
+              <h6>:<br></h6>
+            </div>
+          </div>
           <!-- Table row -->
           <div class="row">
-            <div class="table-responsive">
-              <table class="table table-striped">
+            <div class="table-responsive table-bordered mt-1">
+              <table class="table text-center">
                 <thead>
                 <tr>
-                  <th width="4%">No.</th>
-                  <th>Nama barang</th>
-                  <th>Tanggal Keluar</th>
-                  <th>Penerima</th>
-                  <th class="text-center">Jumlah</th>
-                  <th>Keterangan</th>
+                  <th rowspan="2" class="align-middle">No.</th>
+                  <th rowspan="2" class="align-middle">Tanggal</th>
+                  <th rowspan="2" class="align-middle">Uraian</th>
+                  <th rowspan="2" class="align-middle">Masuk</th>
+                  <th rowspan="2" class="align-middle">Harga Beli</th>
+                  <th rowspan="2" class="align-middle">Keluar</th>
+                  <th colspan="2">Saldo</th>
+                  <th rowspan="2" class="align-middle">Paraf</th>
+                </tr>
+                <tr>
+                  <th scope="col">Jumlah</th>
+                  <th scope="col">Nilai</th>
                 </tr>
                 </thead>
                 <tbody>
-                  @foreach($outstok as $out)
+                  @foreach($transaksi as $t)
                     <tr>
                       <td class="text-center">{{ $loop->iteration }}</td>
-                      <td>{{ $out->name }}</td>
-                      <td>{{ $out->tgl_keluar }}</td>
-                      <td>{{ $out->penerima }}</td>
-                      <td class="text-center">{{ $out->jumlah_keluar }}</td>
-                      <td>{{ $out->keterangan }}</td>
+                      <td>{{ $t->tgl_trans }}</td>
+                      <td>{{ $t->name }}</td>
+                      @if ($t->id_jenis==1)
+                        <td class="text-center">{{ $t->jumlah_trans }}</td>
+                        <td></td>
+                        <td></td>
+                      @else
+                        <td></td>
+                        <td></td>
+                        <td class="text-center">{{ $t->jumlah_trans }}</td>
+                      @endif
+                      <td>{{ $t->stok }}</td>
+                      <td></td>
+                      <td></td>
                     </tr>
                   @endforeach
                 </tbody>
@@ -76,12 +134,6 @@
             <!-- /.col -->
           </div>
           <!-- /.row -->
-          <!-- this row will not appear when printing -->
-          <div class="row no-print">
-            <div class="col-9">
-              <a href="invoice-print.html" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Cetak</a>
-            </div>
-          </div>
         </div>
         <!-- /.invoice -->
       </div><!-- /.col -->

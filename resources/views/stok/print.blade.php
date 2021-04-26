@@ -29,9 +29,34 @@
                 </div>
                 <!-- /.col -->
               </div>
+              <div class="row">
+                <div class="col-2 mt-2">
+                  <h6>UAPB<br></h6>
+                  <h6>UAPB-E1<br></h6>
+                  <h6>UAPPB-W<br></h6>
+                </div>
+                <div class="col-5 mt-2">
+                  <h6>: KEMDIKBUD<br></h6>
+                  <h6>: DIREKTORAL JENDERAL PENDIDIKAN VOKASI<br></h6>
+                  <h6>: Jawa Timur<br></h6>
+                </div>
+                <div class="col-2 mt-2">
+                  <h6>No. Kartu<br></h6>
+                  <h6>Halaman<br></h6>
+                </div>
+                <div class="col-3 mt-2">
+                  <h6>:<br></h6>
+                  <h6>:<br></h6>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 mt-1 text-center">
+                  <p><strong>BUKU BARANG PERSEDIAAN</strong></p>
+                </div>
+              </div>
               <!-- Table row -->
               <div class="row">
-                <div class="table-responsive table-bordered">
+                <div class="table-responsive table-bordered mt-1">
                   <table class="table text-center">
                     <thead>
                     <tr>
@@ -50,16 +75,34 @@
                     </tr>
                     </thead>
                     <tbody>
+                      @foreach($transaksi as $t)
+                        <tr>
+                          <td class="text-center">{{ $loop->iteration }}</td>
+                          <td>{{ $t->tgl_trans }}</td>
+                          <td>{{ $t->name }}</td>
+                          @if ($t->id_jenis==1)
+                            <td class="text-center">{{ $t->jumlah_trans }}</td>
+                            <td></td>
+                            <td></td>
+                          @else
+                            <td></td>
+                            <td></td>
+                            <td class="text-center">{{ $t->jumlah_trans }}</td>
+                          @endif
+                          <td>{{ $t->stok }}</td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                      @endforeach
                     </tbody>
                   </table>
                 </div>
                 <!-- /.col -->
               </div>
-              <!-- /.row -->
               <!-- this row will not appear when printing -->
-              <div class="row no-print">
+              <div class="row">
                 <div class="col-9">
-                  <a href="invoice-print.html" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Cetak</a>
+                  <a href="{{url('/printpdf')}}" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Cetak</a>
                 </div>
               </div>
             </div>
