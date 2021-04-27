@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Stock;
 use App\Models\Instock;
 use App\Models\Outstock;
+use App\Models\Transaction;
 
 class StokController extends Controller
 {
@@ -25,7 +26,8 @@ class StokController extends Controller
     }
     public function home()
     {
-        return view('stok.index');
+        $stock = Stock::count();
+        return view('stok.index', compact('stock'));
     }
     public function index()
     {
@@ -144,17 +146,31 @@ class StokController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id_barang,$dari,$sampai)
-    {
-        // $history = [
-        //     'history' => $this->StokModel->historyData($id),
-        // ];
-        $instock = Instock::where('id_barang',$id_barang)->orderBy('tgl_masuk','asc')->get();
-        $outstock = Outstock::where('id_barang',$id_barang)->orderBy('tgl_keluar','asc')->get();
+    // public function show($id_barang,$dari,$sampai)
+    // {
+    //     // $history = [
+    //     //     'history' => $this->StokModel->historyData($id),
+    //     // ];
+    //     $instock = Instock::where('id_barang',$id_barang)->orderBy('tgl_masuk','asc')->get();
+    //     $outstock = Outstock::where('id_barang',$id_barang)->orderBy('tgl_keluar','asc')->get();
         
-        $data = array('in'=>$instock,'out'=>$outstock, 'dari'=>$dari, 'sampai'=>$sampai);
-        return view('stok.history', compact('data'));
+    //     $data = array('in'=>$instock,'out'=>$outstock, 'dari'=>$dari, 'sampai'=>$sampai);
+    //     return view('stok.history', compact('data'));
+    //     // return $data;
+    // }
+    public function show($id_barang)
+    {
+        $trans = Transaction::join('stocks','stocks.id_barang', '=', 'transactions.stock_id')
+                                ->where('id_barang',$id_barang)
+                                ->get();
+        return view('stok.history', compact('trans'));
         // return $data;
+    }
+    public function showtrans()
+    {
+        $trans = Transaction::join('stocks','stocks.id_barang', '=', 'transactions.stock_id')
+                                ->get();
+            return view('stok.historytrans', compact('trans'));
     }
 
     /**
@@ -189,6 +205,69 @@ class StokController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function print($id_barang)
+    {
+        $trans = Transaction::join('stocks','stocks.id_barang', '=', 'transactions.stock_id')
+                                ->where('stock_id',$id_barang)
+                                ->get();
+            return view('stok.v_printperbarang', compact('trans'));
+    }
+    public function createtrans()
+    {
+        $nama = Stock::select('id_barang','name')->get();
+        //return $nama;
+        return view('stok.formtrans', ['nama' => $nama]);
+    }
+    public function storetrans(Request $request)
+    {
+        $request->validate([
+            'tipe' => 'required',
+            'barang' => 'required',
+            'terima' => 'required',
+            'jumlah' => 'required',
+            'terang' => 'required'
+        ]);
+        $data = Stock::select('stok')->where('id_barang',$request->barang)->get();
+        if($request->tipe == 1)
+        {
+            foreach($data as $data){
+                $stokawal = $data['stok'];
+                $tambah = $request->jumlah;
+                $stokakhir = $stokawal + $tambah;
+            }
+            // return $stokakhir;
+            Transaction::create([
+                'type_id' => $request->tipe,
+                'stock_id' => $request->barang,
+                'penerima' => $request->terima,
+                'jumlah_trans' => $request->jumlah,
+                'saldo' => $stokakhir,
+                'keterangan' => $request->terang
+            ]);
+            Stock::where('id_barang', $request->barang)
+                 ->update(['stok'=> $stokakhir]);
+             return redirect()->route('formtrans')->with('status','Barang Berhasil Ditambahkan');
+        }else{
+            foreach($data as $data){
+                $stokawal = $data['stok'];
+                $kurang = $request->jumlah;
+                $stokakhir = $stokawal - $kurang;
+            }
+            // return $stokakhir;
+            Transaction::create([
+                'type_id' => $request->tipe,
+                'stock_id' => $request->barang,
+                'penerima' => $request->terima,
+                'jumlah_trans' => $request->jumlah,
+                'saldo' => $stokakhir,
+                'keterangan' => $request->terang
+            ]);
+             Stock::where('id_barang', $request->barang)
+                 ->update(['stok'=> $stokakhir]);
+             return redirect()->route('formtrans')->with('status','Barang Berhasil Dikeluarkan');
+        }
+        
     }
     public function testpage()
     {
