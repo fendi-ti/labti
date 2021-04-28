@@ -1,15 +1,21 @@
-@extends('layouts.main')
+@extends('layout/main')
 
-@section('title', 'History')
+@section('title', 'Stok')
 
 @section('container')
 <div class="content-wrapper">
+
+    <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <!-- Main content -->
+            <!-- Main row -->
             <div class="row mt-2">
-                <div class="col-md-12">
-                    <div class="card mt-2 mb-1 card-info disable">
+                <div class="col-md-1 mt-2">
+                </div>
+                <div class="col-md-10 mt-2">
+                    <a class="btn btn-success" href="{{url('/formtrans')}}" role="button"> + Tambah Transaksi</a>
+                    <!-- TABLE: LATEST ORDERS -->
+                    <div class="card mt-0 mb-1 mt-2 card-info disable">
                         <div class="card-header border-transparent">
                             <h3 class="card-title text-center">History Transaksi</h3>
                         </div>
@@ -53,14 +59,14 @@
                             <!-- /.table-responsive -->
                         </div>
                         <!-- /.card-body -->
-                        <div class="card-footer">
-                            <a class="btn btn-primary" href="{{url('/stokview')}}" role="button">Back</a>
-                            <a class="btn btn-info" href="{{url('/print')}}" role="button">Cetak</a>
-                        </div>
                     </div>
+                    <!-- /.card -->
                 </div>
-            </div>
-        </div>
+                <div class="col-md-1 mt-2">
+                </div>
+            </div><!-- /.row (main row) -->
+        </div><!-- /.container-fluid -->
     </section>
+    <!-- /.content -->
 </div>
 @endsection

@@ -45,8 +45,13 @@
                                                 </a>
                                             </td>
                                             <td class="text-center">
-                                                <a href="{{ url('/history',[$s->id]) }}">
+                                                <a href="{{ url('/history',[$s->id_barang]) }}">
                                                     <span style="color: #28a745"><i class="fas fa-history" data-toggle="tooltip" title="History"></i></span>
+                                                </a>
+                                            </td>
+                                            <td class="text-center">
+                                                <a href="{{ url('/print',[$s->id_barang]) }}">
+                                                    <span style="color: #283fa7"><i class="fas fa-print" data-toggle="tooltip" title="History"></i></span>
                                                 </a>
                                             </td>
                                             <td class="text-center">

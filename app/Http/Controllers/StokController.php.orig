@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Stock;
 use App\Models\Instock;
 use App\Models\Outstock;
+<<<<<<< HEAD
+use App\Models\Type;
+=======
+>>>>>>> revisi
 use App\Models\Transaction;
 
 class StokController extends Controller
@@ -168,6 +172,18 @@ class StokController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+<<<<<<< HEAD
+    public function show($id_barang)
+    {
+        // $namabarang = Stock::select('name','id_barang')->where('id_barang',$id_barang)->get();
+        // $transaksi = Transaction::join('stocks','stocks.id_barang', '=', 'transactions.id_barang')
+        //                         // ->join('types','types.id_jenis','=','transactions.id_jenis')
+        //                         ->find('id_barang',$id_barang);
+        // $transaksi = Transaction::where('id_barang',$id_barang)->get();
+        // return view('stok.print', compact('transaksi'));
+        $trans = Stock::find($id_barang)->comments;
+        return $trans;
+=======
     // public function show($id_barang,$dari,$sampai)
     // {
     //     // $history = [
@@ -193,6 +209,7 @@ class StokController extends Controller
         $trans = Transaction::join('stocks','stocks.id_barang', '=', 'transactions.stock_id')
                                 ->get();
             return view('stok.historytrans', compact('trans'));
+>>>>>>> revisi
     }
 
     /**
@@ -228,6 +245,22 @@ class StokController extends Controller
     {
         //
     }
+<<<<<<< HEAD
+    public function print()
+    {
+        $transaksi = Transaction::join('stocks','stocks.id_barang', '=', 'transactions.id_barang')
+                                ->join('types','types.id_jenis','=','transactions.id_jenis')
+                                ->get();
+            return view('stok.print', compact('transaksi'));
+        // return view('stok.print');
+    }
+    public function printpdf()
+    {
+        $transaksi = Transaction::join('stocks','stocks.id_barang', '=', 'transactions.id_barang')
+                                ->join('types','types.id_jenis','=','transactions.id_jenis')
+                                ->get();
+            return view('stok.printpdf', compact('transaksi'));
+=======
     public function print($id_barang)
     {
         $trans = Transaction::join('stocks','stocks.id_barang', '=', 'transactions.stock_id')
@@ -290,6 +323,7 @@ class StokController extends Controller
              return redirect()->route('formtrans')->with('status','Barang Berhasil Dikeluarkan');
         }
         
+>>>>>>> revisi
     }
     public function testpage()
     {

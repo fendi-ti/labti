@@ -22,7 +22,7 @@
         <div class="container-fluid">
             <!-- Small boxes (Stat box) -->
             <div class="row">
-                <div class="col-lg-4 col-6">
+                <div class="col-lg-4">
                     <!-- small box -->
                     <div class="small-box bg-primary">
                         <div class="inner">
@@ -33,6 +33,32 @@
                             <i class="fas fa-plus-square"></i>
                         </div>
                         <a href="{{url('formadd')}}" class="small-box-footer">Lanjut <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <!-- small box -->
+                    <div class="small-box bg-purple">
+                        <div class="inner">
+                            <h3>+</h3>
+                            <p>Tambah Transaksi</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-plus-square"></i>
+                        </div>
+                        <a href="{{url('/historytrans')}}" class="small-box-footer">Lanjut <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                {{--<div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h3>30</h3>
+                            <p>Barang Masuk</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-sign-in-alt"></i>
+                        </div>
+                        <a href="{{url('inview')}}" class="small-box-footer">Lanjut <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -48,13 +74,13 @@
                         </div>
                         <a href="{{url('outview')}}" class="small-box-footer">Lanjut <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
-                </div>
+                </div>--}}
                 <!-- ./col -->
-                <div class="col-lg-4 col-6">
+                <div class="col-lg-4">
                     <!-- small box -->
-                    <div class="small-box bg-info">
+                    <div class="small-box bg-yellow">
                         <div class="inner">
-                            <h3>15</h3>
+                            <h3>{{$stock}}</h3>
                             <p>List Stok Opname</p>
                         </div>
                         <div class="icon">
@@ -68,11 +94,7 @@
             <!-- /.row -->
             <!-- Main row -->
             <div class="row">
-                <div class="col-md-12">
-                    <!-- TABLE: LATEST ORDERS -->
-
-                    <!-- /.card -->
-                </div>
+                    
             </div>
             <!-- /.row (main row) -->
         </div><!-- /.container-fluid -->
