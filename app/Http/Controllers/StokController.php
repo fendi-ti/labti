@@ -36,7 +36,7 @@ class StokController extends Controller
          *];
          */
         $stok = Stock::Paginate(10);
-        return view('stok.stok', ['stok' => $stok]);
+        return view('stok.stok', ['habis_pakai' => $stok]);
     }
     public function formadd()
     {
@@ -61,8 +61,7 @@ class StokController extends Controller
      */
     public function outstok()
     {
-            $outstok = Transaction::join('stocks','stocks.id_barang', '=', 'transactions.id_barang')
-                                ->join('types','types.id_jenis','=','transactions.id_jenis')
+            $outstok = Outstock::join('stocks','stocks.id_barang', '=', 'outstocks.id_barang')
                                 ->get();
             return view('stok.outstok', ['outstok' => $outstok]);
     }
@@ -72,13 +71,12 @@ class StokController extends Controller
                                 ->get();
             return view('stok.instok', ['instok' => $instok]);
     }
-    public function createtrans()
+    public function createout()
     {
         //
         $nama = Stock::select('id_barang','name')->get();
-        $jenis = Type::all();
-        // return $jenis;
-        return view('stok.addTrans', compact('nama'), compact('jenis'));
+        //return $nama;
+        return view('stok.addOut', ['nama' => $nama]);
     }
     public function createin()
     {
@@ -117,49 +115,29 @@ class StokController extends Controller
              ->update(['stok'=> $stokakhir]);
          return redirect()->route('createin')->with('status','Barang Berhasil Ditambahkan');
     }
-    public function storetrans(Request $request)
+    public function storeout(Request $request)
     {
-        // Validasi Inputan
         $request->validate([
-            'jenis' => 'required',
             'barang' => 'required',
             'terima' => 'required',
             'jumlah' => 'required',
             'terang' => 'required'
         ]);
-        // Insert Tabel Transaksi
-        Transaction::create([
-            'id_jenis' => $request->jenis,
+        Outstock::create([
             'id_barang' => $request->barang,
             'penerima' => $request->terima,
-            'jumlah_trans' => $request->jumlah,
+            'jumlah_keluar' => $request->jumlah,
             'keterangan' => $request->terang
         ]);
-        // Update jumlah stock
         $data = Stock::select('id_barang','stok')->get();
-        $idjenis = $request->jenis;
-        if($idjenis==1)
-        {
-            foreach($data as $data){
-                $stokawal = $data['stok'];
-                $tambah = $request->jumlah;
-                $stokakhir = $stokawal + $tambah;
-            }
-            Stock::where('id_barang', $request->barang)
-                    ->update(['stok'=> $stokakhir]);
-            return redirect()->route('createtrans')->with('status','Barang Berhasil Dikeluarkan');
-        }else{
-            foreach($data as $data){
-                $stokawal = $data['stok'];
-                $kurang = $request->jumlah;
-                $stokakhir = $stokawal - $kurang;
-            }
-            Stock::where('id_barang', $request->barang)
-                    ->update(['stok'=> $stokakhir]);
-            return redirect()->route('createtrans')->with('status','Barang Berhasil Dikeluarkan');
+        foreach($data as $data){
+            $stokawal = $data['stok'];
+            $kurang = $request->jumlah;
+            $stokakhir = $stokawal - $kurang;
         }
-        // return $tambah;
-        
+         Stock::where('id_barang', $request->barang)
+             ->update(['stok'=> $stokakhir]);
+         return redirect()->route('createout')->with('status','Barang Berhasil Dikeluarkan');
     }
 
     /**
