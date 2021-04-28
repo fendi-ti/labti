@@ -9,7 +9,7 @@ class Stock extends Model
 {
     use HasFactory;
     protected $table = 'stocks';
-    protected $fillable = ['nama_barang','spesifikasi','stok','satuan','tanggal_masuk','created_at','updated_at'];
+    protected $fillable = ['name','spesifikasi','stok','satuan','tanggal_masuk','created_at','updated_at'];
     /**
      * Get all of the comments for the Stock
      *

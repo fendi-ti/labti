@@ -36,7 +36,7 @@ class StokController extends Controller
          *];
          */
         $stok = Stock::Paginate(10);
-        return view('stok.stok', ['habis_pakai' => $stok]);
+        return view('stok.stok', compact('stok'));
     }
     public function formadd()
     {
