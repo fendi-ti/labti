@@ -36,6 +36,8 @@ class StokController extends Controller
          *];
          */
         $stok = Stock::Paginate(10);
+        // $stok = Stock::all();
+        // var_dump($stok);
         return view('stok.stok', compact('stok'));
     }
     public function formadd()

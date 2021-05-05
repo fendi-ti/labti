@@ -187,6 +187,18 @@
   <script src="{{ asset('assets/dist/js/pages/dashboard.js') }}"></script>
   <!-- AdminLTE for demo purposes -->
   <script src="{{ asset('assets/dist/js/demo.js') }}"></script>
+  <script>
+    $(document).ready(function() {
+      $(document).on('click', '#tombolDetail', function() {
+        var username = $(this).data('username');
+        var email = $(this).data('email');
+        var website = $(this).data('username');
+        $('#userlist').text(username);
+        $('#emaillist').text(email);
+        $('#weblist').text(website);
+      })
+    })
+  </script>
 </body>
 
 </html>
