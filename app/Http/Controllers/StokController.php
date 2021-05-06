@@ -61,18 +61,18 @@ class StokController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function outstok()
-    {
-            $outstok = Outstock::join('stocks','stocks.id_barang', '=', 'outstocks.id_barang')
-                                ->get();
-            return view('stok.outstok', ['outstok' => $outstok]);
-    }
-    public function instok()
-    {
-            $instok = Instock::join('stocks','stocks.id_barang', '=', 'instocks.id_barang')
-                                ->get();
-            return view('stok.instok', ['instok' => $instok]);
-    }
+    // public function outstok()
+    // {
+    //         $outstok = Outstock::join('stocks','stocks.id_barang', '=', 'outstocks.id_barang')
+    //                             ->get();
+    //         return view('stok.outstok', ['outstok' => $outstok]);
+    // }
+    // public function instok()
+    // {
+    //         $instok = Instock::join('stocks','stocks.id_barang', '=', 'instocks.id_barang')
+    //                             ->get();
+    //         return view('stok.instok', ['instok' => $instok]);
+    // }
     public function createout()
     {
         //
@@ -93,54 +93,54 @@ class StokController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storein(Request $request)
-    {
-        $request->validate([
-            'barang' => 'required',
-            'terima' => 'required',
-            'jumlah' => 'required',
-            'terang' => 'required'
-        ]);
-        Instock::create([
-            'id_barang' => $request->barang,
-            'penerima' => $request->terima,
-            'jumlah_masuk' => $request->jumlah,
-            'keterangan' => $request->terang
-        ]);
-        $data = Stock::select('id_barang','stok')->get();
-        foreach($data as $data){
-            $stokawal = $data['stok'];
-            $tambah = $request->jumlah;
-            $stokakhir = $stokawal + $tambah;
-        }
-        Stock::where('id_barang', $request->barang)
-             ->update(['stok'=> $stokakhir]);
-         return redirect()->route('createin')->with('status','Barang Berhasil Ditambahkan');
-    }
-    public function storeout(Request $request)
-    {
-        $request->validate([
-            'barang' => 'required',
-            'terima' => 'required',
-            'jumlah' => 'required',
-            'terang' => 'required'
-        ]);
-        Outstock::create([
-            'id_barang' => $request->barang,
-            'penerima' => $request->terima,
-            'jumlah_keluar' => $request->jumlah,
-            'keterangan' => $request->terang
-        ]);
-        $data = Stock::select('id_barang','stok')->get();
-        foreach($data as $data){
-            $stokawal = $data['stok'];
-            $kurang = $request->jumlah;
-            $stokakhir = $stokawal - $kurang;
-        }
-         Stock::where('id_barang', $request->barang)
-             ->update(['stok'=> $stokakhir]);
-         return redirect()->route('createout')->with('status','Barang Berhasil Dikeluarkan');
-    }
+    // public function storein(Request $request)
+    // {
+    //     $request->validate([
+    //         'barang' => 'required',
+    //         'terima' => 'required',
+    //         'jumlah' => 'required',
+    //         'terang' => 'required'
+    //     ]);
+    //     Instock::create([
+    //         'id_barang' => $request->barang,
+    //         'penerima' => $request->terima,
+    //         'jumlah_masuk' => $request->jumlah,
+    //         'keterangan' => $request->terang
+    //     ]);
+    //     $data = Stock::select('id_barang','stok')->get();
+    //     foreach($data as $data){
+    //         $stokawal = $data['stok'];
+    //         $tambah = $request->jumlah;
+    //         $stokakhir = $stokawal + $tambah;
+    //     }
+    //     Stock::where('id_barang', $request->barang)
+    //          ->update(['stok'=> $stokakhir]);
+    //      return redirect()->route('createin')->with('status','Barang Berhasil Ditambahkan');
+    // }
+    // public function storeout(Request $request)
+    // {
+    //     $request->validate([
+    //         'barang' => 'required',
+    //         'terima' => 'required',
+    //         'jumlah' => 'required',
+    //         'terang' => 'required'
+    //     ]);
+    //     Outstock::create([
+    //         'id_barang' => $request->barang,
+    //         'penerima' => $request->terima,
+    //         'jumlah_keluar' => $request->jumlah,
+    //         'keterangan' => $request->terang
+    //     ]);
+    //     $data = Stock::select('id_barang','stok')->get();
+    //     foreach($data as $data){
+    //         $stokawal = $data['stok'];
+    //         $kurang = $request->jumlah;
+    //         $stokakhir = $stokawal - $kurang;
+    //     }
+    //      Stock::where('id_barang', $request->barang)
+    //          ->update(['stok'=> $stokakhir]);
+    //      return redirect()->route('createout')->with('status','Barang Berhasil Dikeluarkan');
+    // }
 
     /**
      * Display the specified resource.
@@ -271,13 +271,13 @@ class StokController extends Controller
         }
         
     }
-    public function testpage()
-    {
-        $stok = StokModel::paginate();
-        /**$stok = [
-         *    'stok' => $this->StokModel->allData(),
-         *];
-         */
-        return view('stok.testpage', ['habis_pakai' => $stok]);
-    }
+    // public function testpage()
+    // {
+    //     $stok = StokModel::paginate();
+    //     /**$stok = [
+    //      *    'stok' => $this->StokModel->allData(),
+    //      *];
+    //      */
+    //     return view('stok.testpage', ['habis_pakai' => $stok]);
+    // }
 }
