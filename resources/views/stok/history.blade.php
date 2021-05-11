@@ -55,7 +55,6 @@
                         <!-- /.card-body -->
                         <div class="card-footer">
                             <a class="btn btn-primary" href="{{url('/stokview')}}" role="button">Back</a>
-                            <a class="btn btn-info" href="{{url('/print')}}" role="button">Cetak</a>
                         </div>
                     </div>
                 </div>

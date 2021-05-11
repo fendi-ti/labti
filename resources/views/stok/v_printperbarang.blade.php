@@ -30,7 +30,7 @@
                 <!-- /.col -->
               </div>
               <div class="row">
-                <div class="col-2 mt-2">
+                <div class="col-3 mt-2">
                   <h6>UAPB<br></h6>
                   <h6>UAPB-E1<br></h6>
                   <h6>UAPPB-W<br></h6>
@@ -44,7 +44,7 @@
                   <h6>No. Kartu<br></h6>
                   <h6>Halaman<br></h6>
                 </div>
-                <div class="col-3 mt-2">
+                <div class="col-2 mt-2">
                   <h6>:<br></h6>
                   <h6>:<br></h6>
                 </div>
@@ -55,7 +55,7 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-2 mt-2">
+                <div class="col-3 mt-2">
                   <h6>Kode UAKPB<br></h6>
                   <h6>Nama Unit UAPKPB<br></h6>
                 </div>
@@ -67,16 +67,16 @@
                   <h6>Nama Barang<br></h6>
                   <h6>Satuan<br></h6>
                 </div>
-                <div class="col-3 mt-2">
-                  <h6>:<br></h6>
-                  <h6>:<br></h6>
+                <div class="col-2 mt-2">
+                  @foreach ($unit as $item)
+                  <h6>:{{$item->name}}<br></h6>
+                  <h6>:{{$item->satuan}}<br></h6>
+                  @endforeach
                 </div>
               </div>
-    
               <!-- Table row -->
               <div class="row">
-                <div class="table-responsive table-bordered">
-                  <table class="table text-center">
+                  <table class="table table-bordered border-primary text-center">
                     <thead>
                     <tr>
                       <th rowspan="2" class="align-middle">No.</th>
@@ -115,7 +115,6 @@
                       @endforeach
                     </tbody>
                   </table>
-                </div>
                 <!-- /.col -->
               </div>
               <!-- /.row -->

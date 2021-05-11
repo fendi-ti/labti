@@ -213,7 +213,15 @@ class StokController extends Controller
         $trans = Transaction::join('stocks','stocks.id_barang', '=', 'transactions.stock_id')
                                 ->where('stock_id',$id_barang)
                                 ->get();
-            return view('stok.v_printperbarang', compact('trans'));
+        $unit = Stock::where('id_barang',$id_barang)->get();
+            return view('stok.printperbarang', compact('trans'), compact('unit'));
+    }
+    public function printout()
+    {
+        $transout = Transaction::join('stocks','stocks.id_barang', '=', 'transactions.stock_id')
+                                ->where('type_id',2)
+                                ->get();
+        return view('stok.printout', compact('transout'));
     }
     public function createtrans()
     {

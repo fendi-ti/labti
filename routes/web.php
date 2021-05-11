@@ -39,6 +39,7 @@ Route::get('/testpage', [StokController::class, 'testpage']);
 Route::get('/formadd', [StokController::class, 'formadd'])->name('formadd');
 Route::post('/addbarang', [StokController::class, 'addbarang'])->name('addbarang');
 Route::get('/print/{id_barang}', [StokController::class, 'print']);
+Route::get('/printout', [StokController::class, 'printout']);
 Route::get('/formtrans', [StokController::class, 'createtrans'])->name('formtrans');
 Route::post('/addtrans', [StokController::class, 'storetrans'])->name('addtrans');
 Auth::routes();

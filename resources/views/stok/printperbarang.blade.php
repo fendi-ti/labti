@@ -23,9 +23,7 @@
   <!-- Main content -->
   <section class="invoice">
     <div class="row">
-      <div class="col-1 mt-2">
-      </div>
-      <div class="col-10 mt-2">
+      <div class="col-12 mt-2">
         <!-- Main content -->
         <div class="invoice p-3 mb-3">
           <!-- title row -->
@@ -84,14 +82,16 @@
               <h6>Satuan<br></h6>
             </div>
             <div class="col-3 mt-2">
-              <h6>:<br></h6>
-              <h6>:<br></h6>
+              @foreach ($unit as $item)
+                  <h6>:{{$item->name}}<br></h6>
+                  <h6>:{{$item->satuan}}<br></h6>
+                  @endforeach
             </div>
           </div>
           <!-- Table row -->
           <div class="row">
-            <div class="table-responsive table-bordered mt-1">
-              <table class="table text-center">
+           
+              <table class="table table-bordered mt-1 text-center">
                 <thead>
                 <tr>
                   <th rowspan="2" class="align-middle">No.</th>
@@ -109,7 +109,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                  @foreach($transaksi as $t)
+                  @foreach($trans as $t)
                     <tr>
                       <td class="text-center">{{ $loop->iteration }}</td>
                       <td>{{ $t->tgl_trans }}</td>
@@ -130,15 +130,13 @@
                   @endforeach
                 </tbody>
               </table>
-            </div>
+            
             <!-- /.col -->
           </div>
           <!-- /.row -->
         </div>
         <!-- /.invoice -->
       </div><!-- /.col -->
-      <div class="col-1 mt-2">
-      </div>
     </div><!-- /.row -->
   </section>
   <!-- /.content -->

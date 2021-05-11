@@ -28,6 +28,12 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <link rel="icon" href="{{ asset('assets/dist/img/logo.png') }}">
+  <style class="text/css">
+      .baris {
+        line-height: 2px;
+        text-decoration: underline;
+        }
+  </style>
 </head>
 
 <body class="sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">

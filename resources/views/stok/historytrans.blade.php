@@ -14,6 +14,7 @@
                 </div>
                 <div class="col-md-10 mt-2">
                     <a class="btn btn-success" href="{{url('/formtrans')}}" role="button"> + Tambah Transaksi</a>
+                    <a class="btn btn-success" href="{{url('/printout')}}" role="button">Cetak Transaksi Keluar</a>
                     <!-- TABLE: LATEST ORDERS -->
                     <div class="card mt-0 mb-1 mt-2 card-info disable">
                         <div class="card-header border-transparent">
