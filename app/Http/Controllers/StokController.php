@@ -166,7 +166,7 @@ class StokController extends Controller
                                 ->where('id_barang',$id_barang)
                                 ->get();
         return view('stok.history', compact('trans'));
-        // return $data;
+        // var_dump($trans);
     }
     public function showtrans()
     {
