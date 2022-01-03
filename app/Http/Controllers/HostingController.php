@@ -20,7 +20,7 @@ class HostingController extends Controller
     {
         $ch = curl_init();
         $data = array("key" => "hallobro", "action" => 'list');
-        $url = 'https://103.109.210.29:2304/v1/account';
+        $url = 'https://ta.poliwangi.ac.id:2304/v1/account';
         $headers = array();
         $headers[] = 'Content-Type: application/x-www-form-urlencoded';
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
@@ -33,9 +33,7 @@ class HostingController extends Controller
         $response = curl_exec($ch);
         $result = json_decode($response, true);
         curl_close($ch);
-        // return response()->json([$response]);
-        // var_dump($result);
-        // return $result;
+
         return view('hosting.user', compact('result'));
     }
 

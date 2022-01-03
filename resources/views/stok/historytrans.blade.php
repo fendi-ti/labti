@@ -29,7 +29,7 @@
                                             <th scope="col" width="4%">No.</th>
                                             <th scope="col">Nama Barang</th>
                                             <th scope="col">Tanggal Transaksi</th>
-                                            <th scope="col">Jenis Transaksi</th> 
+                                            <th scope="col">Jenis Transaksi</th>
                                             <th scope="col" class="text-center">Jumlah Transaksi</th>
                                             <th scope="col" class="text-center">Saldo</th>
                                             <th scope="col">Penerima</th>
@@ -43,9 +43,9 @@
                                             <td>{{ $t->name }}</td>
                                             <td>{{ $t->tgl_trans }}</td>
                                             @if ($t->type_id == 1)
-                                                <td>Masuk</td>
+                                            <td>Masuk</td>
                                             @else
-                                                <td>Keluar</td>
+                                            <td>Keluar</td>
                                             @endif
                                             <td class="text-center">{{ $t->jumlah_trans }}</td>
                                             <td class="text-center">{{ $t->saldo }}</td>
@@ -62,6 +62,9 @@
                         <!-- /.card-body -->
                     </div>
                     <!-- /.card -->
+                    <div class="d-flex justify-content-end">
+                        {{ $trans->links() }}
+                    </div>
                 </div>
                 <div class="col-md-1 mt-2">
                 </div>
@@ -69,5 +72,8 @@
         </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
+</div>
+<div class="d-flex">
+
 </div>
 @endsection

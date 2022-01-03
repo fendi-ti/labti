@@ -114,7 +114,7 @@
                       <td class="text-center">{{ $loop->iteration }}</td>
                       <td>{{ $t->tgl_trans }}</td>
                       <td>{{ $t->name }}</td>
-                      @if ($t->id_jenis==1)
+                      @if ($t->type_id==1)
                         <td class="text-center">{{ $t->jumlah_trans }}</td>
                         <td></td>
                         <td></td>
@@ -123,7 +123,7 @@
                         <td></td>
                         <td class="text-center">{{ $t->jumlah_trans }}</td>
                       @endif
-                      <td>{{ $t->stok }}</td>
+                      <td>{{ $t->saldo }}</td>
                       <td></td>
                       <td></td>
                     </tr>

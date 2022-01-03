@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\HostingController;
 use App\Http\Controllers\StokController;
+use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,4 +44,5 @@ Route::get('/printout', [StokController::class, 'printout']);
 Route::get('/stok/formtrans', [StokController::class, 'createtrans'])->name('formtrans');
 Route::post('/addtrans', [StokController::class, 'storetrans'])->name('addtrans');
 Auth::routes();
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::post('/daftar', [HomeController::class, 'daftar'])->name('daftar');

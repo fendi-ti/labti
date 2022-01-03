@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "293dec9daf1eb97c29c0ad0d4fc2ef86",
+    "content-hash": "14168d21c8d348de2b049bb41fa74716",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -60,16 +60,16 @@
         },
         {
             "name": "biscolab/laravel-recaptcha",
-            "version": "5.0.1",
+            "version": "5.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/biscolab/laravel-recaptcha.git",
-                "reference": "21018b259827e1446ea9d829ae423022a0e1025e"
+                "reference": "b3ef5c269ef3c33d40117e2d18a7f7ccd9afe05a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/biscolab/laravel-recaptcha/zipball/21018b259827e1446ea9d829ae423022a0e1025e",
-                "reference": "21018b259827e1446ea9d829ae423022a0e1025e",
+                "url": "https://api.github.com/repos/biscolab/laravel-recaptcha/zipball/b3ef5c269ef3c33d40117e2d18a7f7ccd9afe05a",
+                "reference": "b3ef5c269ef3c33d40117e2d18a7f7ccd9afe05a",
                 "shasum": ""
             },
             "require": {
@@ -124,9 +124,9 @@
             ],
             "support": {
                 "issues": "https://github.com/biscolab/laravel-recaptcha/issues",
-                "source": "https://github.com/biscolab/laravel-recaptcha/tree/v5.0.1"
+                "source": "https://github.com/biscolab/laravel-recaptcha/tree/v5.1.0"
             },
-            "time": "2021-02-03T16:26:03+00:00"
+            "time": "2021-11-30T22:55:30+00:00"
         },
         {
             "name": "brick/math",

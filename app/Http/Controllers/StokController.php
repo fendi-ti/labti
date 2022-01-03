@@ -53,8 +53,8 @@ class StokController extends Controller
             'tanggal_masuk' => 'required'
         ]);
         //return $request;
-          Stock::create($request->all());
-          return redirect()->route('formadd')->with('status','Barang Berhasil Ditambahkan');
+        Stock::create($request->all());
+        return redirect()->route('formadd')->with('status', 'Barang Berhasil Ditambahkan');
     }
     /**
      * Show the form for creating a new resource.
@@ -76,14 +76,14 @@ class StokController extends Controller
     public function createout()
     {
         //
-        $nama = Stock::select('id_barang','name')->get();
+        $nama = Stock::select('id_barang', 'name')->get();
         //return $nama;
         return view('stok.addOut', ['nama' => $nama]);
     }
     public function createin()
     {
         //
-        $nama = Stock::select('id_barang','name')->get();
+        $nama = Stock::select('id_barang', 'name')->get();
         //return $nama;
         return view('stok.addIn', ['nama' => $nama]);
     }
@@ -155,24 +155,24 @@ class StokController extends Controller
     //     // ];
     //     $instock = Instock::where('id_barang',$id_barang)->orderBy('tgl_masuk','asc')->get();
     //     $outstock = Outstock::where('id_barang',$id_barang)->orderBy('tgl_keluar','asc')->get();
-        
+
     //     $data = array('in'=>$instock,'out'=>$outstock, 'dari'=>$dari, 'sampai'=>$sampai);
     //     return view('stok.history', compact('data'));
     //     // return $data;
     // }
     public function show($id_barang)
     {
-        $trans = Transaction::join('stocks','stocks.id_barang', '=', 'transactions.stock_id')
-                                ->where('id_barang',$id_barang)
-                                ->get();
+        $trans = Transaction::join('stocks', 'stocks.id_barang', '=', 'transactions.stock_id')
+            ->where('id_barang', $id_barang)
+            ->get();
         return view('stok.history', compact('trans'));
         // var_dump($trans);
     }
     public function showtrans()
     {
-        $trans = Transaction::join('stocks','stocks.id_barang', '=', 'transactions.stock_id')
-                                ->get();
-            return view('stok.historytrans', compact('trans'));
+        $trans = Transaction::join('stocks', 'stocks.id_barang', '=', 'transactions.stock_id')
+            ->paginate(3);
+        return view('stok.historytrans', compact('trans'));
     }
 
     /**
@@ -210,22 +210,22 @@ class StokController extends Controller
     }
     public function print($id_barang)
     {
-        $trans = Transaction::join('stocks','stocks.id_barang', '=', 'transactions.stock_id')
-                                ->where('stock_id',$id_barang)
-                                ->get();
-        $unit = Stock::where('id_barang',$id_barang)->get();
-            return view('stok.printperbarang', compact('trans'), compact('unit'));
+        $trans = Transaction::join('stocks', 'stocks.id_barang', '=', 'transactions.stock_id')
+            ->where('stock_id', $id_barang)
+            ->get();
+        $unit = Stock::where('id_barang', $id_barang)->get();
+        return view('stok.printperbarang', compact('trans'), compact('unit'));
     }
     public function printout()
     {
-        $transout = Transaction::join('stocks','stocks.id_barang', '=', 'transactions.stock_id')
-                                ->where('type_id',2)
-                                ->get();
+        $transout = Transaction::join('stocks', 'stocks.id_barang', '=', 'transactions.stock_id')
+            ->where('type_id', 2)
+            ->get();
         return view('stok.printout', compact('transout'));
     }
     public function createtrans()
     {
-        $nama = Stock::select('id_barang','name')->get();
+        $nama = Stock::select('id_barang', 'name')->get();
         //return $nama;
         return view('stok.formtrans', ['nama' => $nama]);
     }
@@ -238,10 +238,9 @@ class StokController extends Controller
             'jumlah' => 'required',
             'terang' => 'required'
         ]);
-        $data = Stock::select('stok')->where('id_barang',$request->barang)->get();
-        if($request->tipe == 1)
-        {
-            foreach($data as $data){
+        $data = Stock::select('stok')->where('id_barang', $request->barang)->get();
+        if ($request->tipe == 1) {
+            foreach ($data as $data) {
                 $stokawal = $data['stok'];
                 $tambah = $request->jumlah;
                 $stokakhir = $stokawal + $tambah;
@@ -256,10 +255,10 @@ class StokController extends Controller
                 'keterangan' => $request->terang
             ]);
             Stock::where('id_barang', $request->barang)
-                 ->update(['stok'=> $stokakhir]);
-             return redirect()->route('formtrans')->with('status','Barang Berhasil Ditambahkan');
-        }else{
-            foreach($data as $data){
+                ->update(['stok' => $stokakhir]);
+            return redirect()->route('formtrans')->with('status', 'Barang Berhasil Ditambahkan');
+        } else {
+            foreach ($data as $data) {
                 $stokawal = $data['stok'];
                 $kurang = $request->jumlah;
                 $stokakhir = $stokawal - $kurang;
@@ -273,11 +272,10 @@ class StokController extends Controller
                 'saldo' => $stokakhir,
                 'keterangan' => $request->terang
             ]);
-             Stock::where('id_barang', $request->barang)
-                 ->update(['stok'=> $stokakhir]);
-             return redirect()->route('formtrans')->with('status','Barang Berhasil Dikeluarkan');
+            Stock::where('id_barang', $request->barang)
+                ->update(['stok' => $stokakhir]);
+            return redirect()->route('formtrans')->with('status', 'Barang Berhasil Dikeluarkan');
         }
-        
     }
     // public function testpage()
     // {
