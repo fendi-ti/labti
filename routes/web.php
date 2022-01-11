@@ -25,7 +25,16 @@ use App\Http\Controllers\HomeController;
 //    return view('about', ['nama' => $nama]);
 //});
 Route::get('/home', [PagesController::class, 'home']);
+
 Route::get('/hosting', [HostingController::class, 'index'])->name('hosting');
+Route::get('/hosting/user', [HostingController::class, 'showuser']);
+Route::get('/hosting/pendaftar', [HostingController::class, 'showpendaftar']);
+Route::get('/hosting/{id}', [HostingController::class, 'adduser']);
+Route::get('/hosting/deluser/{id}', [HostingController::class, 'deluser']);
+Route::get('/hosting/delpendaftar/{id}', [HostingController::class, 'delpendaftar']);
+Route::get('/suspend/{username}', [HostingController::class, 'suspend']);
+Route::get('/unsuspend/{username}', [HostingController::class, 'unsuspend']);
+
 Route::get('/stok', [StokController::class, 'home']);
 Route::get('/stok/stokview', [StokController::class, 'index']);
 Route::get('/history/{id_barang}', [StokController::class, 'show']);

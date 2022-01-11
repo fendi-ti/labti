@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pendaftaran;
 use Illuminate\Http\Request;
 //use Symfony\Component\HttpFoundation\Request as HttpFoundationRequest;
 //use Illuminate\Support\Facades\Auth;
@@ -38,8 +39,35 @@ class HomeController extends Controller
             'password_confirmation' => 'required',
             'paket' => 'required',
             'formulir' => 'required|mimes:jpg,pdf',
-            'g-recaptcha-response' => 'recaptcha'
+            //'g-recaptcha-response' => 'recaptcha'
         ]);
-        dd('berhasil input data');
+
+        // $fileModel = new Pendaftaran;
+
+        // $fileModel->nim = $request->nim;
+        // $fileModel->nama = $request->nama;
+        // $fileModel->email = $request->email;
+        // $fileModel->password = $request->password;
+        // $fileModel->paket = $request->paket;
+        // $fileModel->formulir = time() . '_' . $request->formulir->getClientOriginalName();
+        // $fileModel->save();
+        //$fileModel->file_path = '/storage/' . $filePath;
+        // return back()
+        // ->with('success','File has been uploaded.')
+        // ->with('file', $fileName);
+
+        Pendaftaran::create([
+            'nim' => $request->nim,
+            'nama' => $request->nama,
+            'email' => $request->email,
+            'password' => $request->password,
+            'paket' => $request->paket,
+            'formulir' => $request->formulir->getClientOriginalName()
+        ]);
+        $filenameSimpan = $request->formulir->getClientOriginalName();
+        $path = $request->file('formulir')->storeAs('public', $filenameSimpan);
+        return back()
+            ->with('success', 'File has been uploaded.');
+        // dd('berhasil input data');
     }
 }

@@ -10,8 +10,39 @@
         <!-- Main row -->
         <div class="row mt-2">
           <div class="col-md-12">
+            <nav class="mt-2">
+              <ul class="pagination pagination-sm justify-content-end">
+                <?php if ($halAktif > 1) { ?>
+                  <li class="page-item">
+                    <a class="page-link" href="?halaman=<?= $halAktif - 1; ?>">Prev</a>
+                  </li>
+                <?php } else { ?>
+                  <li class="page-item disabled">
+                    <a class="page-link" href="#">Prev</a>
+                  </li>
+                <?php } ?>
+
+                <?php for ($j = 1; $j <= $jumlahHal; $j++) : ?>
+                  <?php if ($j == $halAktif) : ?>
+                    <li class="page-item active"><a class="page-link" href="?halaman=<?= $j; ?>"><?= $j; ?></a></li>
+                  <?php else : ?>
+                    <li class="page-item"><a class="page-link" href="?halaman=<?= $j; ?>"><?= $j; ?></a></li>
+                  <?php endif; ?>
+                <?php endfor; ?>
+
+                <?php if ($halAktif < $jumlahHal) { ?>
+                  <li class="page-item">
+                    <a class="page-link" href="?halaman=<?= $halAktif + 1; ?>">Next</a>
+                  </li>
+                <?php } else { ?>
+                  <li class="page-item disabled">
+                    <a class="page-link" href="#">Next</a>
+                  </li>
+                <?php } ?>
+              </ul>
+            </nav>
             <!-- TABLE: User Registration -->
-            <div class="card mt-2 mb-1">
+            <div class="card mb-1">
               <div class="card-header border-transparent">
                 <h3 class="card-title text-center">User Hosting</h3>
               </div>
@@ -34,8 +65,8 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <?php $nomor = 1; ?>
-                     @for ($i = 0; $i < count($result["msj"]); $i++)
+                      <?php for ($i = $awalData; $i < $kondisi; $i++) { ?>
+                        <?php if ($i < count($result["msj"])) { ?>
                      <tr>
                       <td>{{ $nomor++ }}</td>
                       <td><a href="http://ta.poliwangi.ac.id/~<?= $result["msj"]["$i"]["username"]; ?>" class="badge badge-info" target="blank">{{$result["msj"]["$i"]["username"]}}</td>
@@ -61,7 +92,7 @@
                         <?php } ?>
                       </td>
                       <td>
-                        <a href="{{url('/hapus',$result["msj"]["$i"]["username"])}}" onclick="return confirm('Yakin untuk menghapus?')">
+                        <a href="{{url('/hosting/deluser',$i)}}" onclick="return confirm('Yakin untuk menghapus?')">
                           <span style="color: #dc3545">
                             <i class="fas fa-trash-alt" data-toggle="tooltip" title="Delete"></i>
                           </span>
@@ -73,7 +104,8 @@
                         </a>
                       </td>
                     </tr>
-                     @endfor
+                    <?php } ?>
+                        <?php } ?>
                     </tbody>
                   </table>
                 </div>

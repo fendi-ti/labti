@@ -162,9 +162,9 @@
                       </div>
                       @enderror
                     </div>
-                    <div class="form-group">
+                    <!--<div class="form-group">
                       <div> {!! htmlFormSnippet() !!} </div>
-                    </div>
+                    </div>-->
                     <button class="btn btn-lg btn-success" type="submit">DAFTAR</button>
 
                   </form>

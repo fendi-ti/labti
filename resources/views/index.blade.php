@@ -40,7 +40,7 @@
             <p>List Stok Opname</p>
           </div>
           <div class="icon"><i class="fas fa-list"></i></div>
-          <a href="{{url('stokview')}}" class="small-box-footer">Lanjut <i class="fas fa-arrow-circle-right"></i></a>
+          <a href="{{url('/stok/stokview')}}" class="small-box-footer">Lanjut <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
       <div class="col-md-4">
