@@ -55,6 +55,13 @@
     <div class="container">
       <!-- Main content -->
       <section class="content">
+        @if(session()->has('success'))
+        <div class="row">
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success')}}
+          </div>
+        </div>  
+          @endif
         <div class="container-fluid">
           <!-- Main row -->
           <div class="row">

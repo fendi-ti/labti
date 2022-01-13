@@ -5,6 +5,8 @@ use App\Http\Controllers\PagesController;
 use App\Http\Controllers\HostingController;
 use App\Http\Controllers\StokController;
 use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\File;
+use Symfony\Component\HttpFoundation\Response;
 /*
 |--------------------------------------------------------------------------
 | Web Routes

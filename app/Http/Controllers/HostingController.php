@@ -216,7 +216,9 @@ class HostingController extends Controller
     public function showpendaftar()
     {
         $pendaftar = Pendaftaran::all();
-        return view('hosting.pendaftar', compact('pendaftar'));
+        $publicpath = '../storage/app/public/';
+        // dd($publicpath);
+        return view('hosting.pendaftar', compact('pendaftar'), compact('publicpath'));
     }
 
     /**
